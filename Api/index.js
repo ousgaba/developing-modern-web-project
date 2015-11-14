@@ -1,6 +1,4 @@
-//require('./mongo.js');
-
-//var mongo = require('./mongo.js');
+var mongo = require('./mongo.js');
 var fs = require('fs');
 var yahooFinance = require("yahoo-finance");
 var restify = require('restify')
