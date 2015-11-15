@@ -4,6 +4,8 @@ var util = require('util');
 var yahooFinance = require('yahoo-finance');
 var parser = require('xml2json');
 
+
+
 require('colors');
 
 var _ = require('lodash');
