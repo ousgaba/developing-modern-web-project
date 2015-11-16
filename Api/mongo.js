@@ -15,14 +15,13 @@ const StockSchema = new mongoose.Schema({
     symbol: String,
     currency: String,
     bid: String,
-          name : String,
-       oneyear : String,
-        open : String,
-       
-         daylow : String,
-          dayhigh : String,
-           yearlow : String,
-           yearhigh : String
+    name : String,
+    oneyear : String,
+    open : String,
+    daylow : String,
+    dayhigh : String,
+    yearlow : String,
+    yearhigh : String
 
 })
 const Stock = mongoose.model('Stock',StockSchema);
@@ -39,17 +38,15 @@ exports.addList = (data, callback) => {
   const step1 = data.split(':')
  // console.log(json)
   const symbolExt = json.query.results.quote.symbol;
-   const currencyExt = json.query.results.quote.Currency;
-    const bidExt = json.query.results.quote.Bid;
-    
-     const name = json.query.results.quote.Name;
-      const oneyear = json.query.results.quote.OneyrTargetPrice;
-       const open = json.query.results.quote.Open;
-       
-        const daylow = json.query.results.quote.DaysLow;
-         const dayhigh = json.query.results.quote.DaysHigh;
-          const yearlow = json.query.results.quote.YearLow;
-          const yearhigh = json.query.results.quote.YearHigh;
+  const currencyExt = json.query.results.quote.Currency;
+  const bidExt = json.query.results.quote.Bid;
+  const name = json.query.results.quote.Name;
+  const oneyear = json.query.results.quote.OneyrTargetPrice;
+  const open = json.query.results.quote.Open;
+  const daylow = json.query.results.quote.DaysLow;
+  const dayhigh = json.query.results.quote.DaysHigh;
+  const yearlow = json.query.results.quote.YearLow;
+  const yearhigh = json.query.results.quote.YearHigh;
        
   
   console.log(symbolExt +' - '+ currencyExt+' - '+bidExt+' - '+name+' - '+oneyear+' - '+open+' - '+daylow+' - '+dayhigh+' - '+yearlow+' - '+yearhigh)
@@ -64,12 +61,12 @@ exports.addList = (data, callback) => {
     currency: currencyExt,
     bid: bidExt,    
     name : name,
-       oneyear : oneyear,
-        open : open,       
-         daylow : daylow,
-          dayhigh : dayhigh,
-           yearlow : yearlow,
-           yearhigh : yearhigh
+    oneyear : oneyear,
+    open : open,       
+    daylow : daylow,
+    dayhigh : dayhigh,
+    yearlow : yearlow,
+    yearhigh : yearhigh
 
     
 })

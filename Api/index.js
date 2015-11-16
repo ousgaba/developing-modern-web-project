@@ -22,9 +22,8 @@ request.get("https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20yah
   }
   //console.log(body)
   
-  mongo.addList(body);
-  //mongodb..addList(body).mongodb
-  
+ mongo.addList(body);
+ mongo.addList(body) 
 })
 
 
