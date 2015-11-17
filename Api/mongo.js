@@ -1,14 +1,36 @@
 var mongoose = require('mongoose')
     , fs = require('fs'),
-    Schema = mongoose.Schema;
+    Schema = mongoose.Schema,
+    format = require('util').format;
     
+    
+    var MongoClient = require('mongodb').MongoClient
+  , assert = require('assert');
+  
+  
 var stock = require('./index.js')
     
 var database = 'data'
-const server = 'mongodb://'+process.env.IP+'/'+database;
+
+
+const server = 'mongodb://127.0.0.1:27017/'+database;;//'mongodb://'+process.env.IP+'/'+database;
 console.log(server)
 mongoose.connect(server, {server:{auto_reconnect:true}});
 var db = mongoose.connection;
+
+
+
+
+// Connection URL
+var url = 'mongodb://localhost:27017/data';
+// Use connect method to connect to the Server
+MongoClient.connect(url, function(err, db) {
+  assert.equal(null, err);
+  console.log("Connected correctly to server");
+
+  db.close();
+});
+
 
         
 const StockSchema = new mongoose.Schema({
@@ -29,7 +51,7 @@ const Stock = mongoose.model('Stock',StockSchema);
 
 /* HERE*/
 
-exports.addList = (data, callback) => {
+exports.addList = function(data, callback)  {
   // convert string to json format
   var json = JSON.parse(data);
   
@@ -71,18 +93,22 @@ exports.addList = (data, callback) => {
     
 })
 
-
-  newstock.save(function (err, newstock)  {
+  
+  console.log('adding addList')
+  	db.collection('data').insert(newstock, function(err, newstock) {
+		if (err) throw err;
+		console.log("Record added as "+newstock);
+	});
+  
+  
+   newstock.save(function (err, newstock, callback)  {
     if (err) {
       callback('error: '+err)
-    }
-    callback('added: '+newstock)
-  });
+     }
+     callback('added: '+newstock)
+   });
   
-   newstock.save(function (err, newstock) {
-  if (err) return console.error(err);
-  
-});
+
   
   
 }
