@@ -13,18 +13,16 @@ var stock = require('./index.js')
 var database = 'data'
 
 
-const server = 'mongodb://127.0.0.1:27017/'+database;;//'mongodb://'+process.env.IP+'/'+database;
+const server = 'mongodb://'+process.env.IP+'/'+database;
 console.log(server)
 mongoose.connect(server, {server:{auto_reconnect:true}});
 var db = mongoose.connection;
 
 
-
-
 // Connection URL
 var url = 'mongodb://localhost:27017/data';
 // Use connect method to connect to the Server
-MongoClient.connect(url, function(err, db) {
+MongoClient.connect("mongodb://10.1.1.1:27017/data", function(err,db) {
   assert.equal(null, err);
   console.log("Connected correctly to server");
 
@@ -106,7 +104,7 @@ exports.addList = function(data, callback)  {
       callback('error: '+err)
      }
      callback('added: '+newstock)
-   });
+  });
   
 
   
